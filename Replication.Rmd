@@ -13,6 +13,36 @@ The goal is to replicate tables from an exisiting Urban paper. The paper I will 
 
 # The Efficiency of Race-Neutral Alternatives to Race-Based Affirmative Action: Evidence from Chicago's Exam Schools
 By: Glenn Ellison & Parag A. Pathak
-```{r}
-sample_data <- read.csv("/Users/pawonee/Desktop/PhD/Sem3/Urban/School/public_use_data/raw/tiers/tabula-tier2009_1.csv")
+
+Refer to attached link for AER : https://www.openicpsr.org/openicpsr/project/120529/version/V1/view?path=/openicpsr/120529/fcr:versions/V1&type=project
+
+First, I installed some packages as per instruction:
+install.packages(c("leaps","gelnet","doParallel","foreach","hdm"))
+I will work on cleaning tract data here:
+
+```{r message=FALSE}
+library(stargazer)
+library(plm)
+library(foreign)
+library(tidyverse)
+tract_data <- read.csv("/Users/pawonee/Desktop/PhD/Sem3/Urban/School/public_use_data/raw/Summary of Census Socioeconomic Data 2012-2013.csv" ,header=TRUE, stringsAsFactors=FALSE) %>%
+  mutate (income = Estimated.Median.Family.Income.Cumulative.Percentage,
+         educ = Educational.Attainment.Score.Cumulative.Percentage,
+         single = X..of.Single.Parent.Households,
+         owner = X..of.Owner.Occupied.Homes.Cumulative.Percentage,
+         english = X..of.Population.Speaking.a.Language.Other.than.English,
+         isat = Weighted.Average.ISAT.Performance.at.Attendance.Area.Schools,
+         tracta = TRACT,
+         tracta = 100*tracta)
+
+#for (v in varlist income educ single owner english isat) {tract = string(tracta)}
 ```
+
+The analysis table is done using:
+```{r}
+regList <- c("lasso", "stepwise", "gelnet lasso", "lasso with hdm", "lasso glmnet min")
+for (regType in regList)  {
+  print(paste("Now running '", regType, ".R'", sep = ""))
+  source(paste(code, "/", regType, ".R", sep = ""))
+}
+```{r}
