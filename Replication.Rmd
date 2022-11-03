@@ -18,9 +18,9 @@ Refer to attached link for AER : https://www.openicpsr.org/openicpsr/project/120
 
 First, I installed some packages as per instruction:
 install.packages(c("leaps","gelnet","doParallel","foreach","hdm"))
-I will work on cleaning tract data here:
+I will work on cleaning data from the Census Socioeconomic data here:
 
-```{r message=FALSE}
+```{r}
 library(stargazer)
 library(plm)
 library(foreign)
@@ -33,10 +33,28 @@ tract_data <- read.csv("/Users/pawonee/Desktop/PhD/Sem3/Urban/School/public_use_
          english = X..of.Population.Speaking.a.Language.Other.than.English,
          isat = Weighted.Average.ISAT.Performance.at.Attendance.Area.Schools,
          tracta = TRACT,
-         tracta = 100*tracta)
+         tracta = 100*tracta,
+         factorsocioeconomictier = X6.Factor.Socioeconomic.Tier)
 
-#for (v in varlist income educ single owner english isat) {tract = string(tracta)}
+#for (income educ single owner english isat in tract_data) { mutate (tract = str(tracta))}
 ```
+
+Creating a simpler data frame:
+```{r}
+tract_update <- data.frame(tract_data$TRACT,tract_data$tracta, tract_data$income, tract_data$single, tract_data$owner, tract_data$english, tract_data$isat, tract_data$factorsocioeconomictier)
+
+#Checking impact of household being single parent on educational attainment score:
+m1 <-lm(educ~single, data = tract_data)
+#doesnt work because percentage sign
+attach(tract_data)
+plot(educ, single)
+abline(lm(educ~single))
+title("Regression of % of single parent households on education attainment score")
+```
+
+
+
+
 
 The analysis table is done using:
 ```{r}
