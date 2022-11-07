@@ -35,19 +35,31 @@ tract_data <- read.csv("/Users/pawonee/Desktop/PhD/Sem3/Urban/School/public_use_
          tracta = TRACT,
          tracta = 100*tracta,
          factorsocioeconomictier = X6.Factor.Socioeconomic.Tier)
+write.csv(tract_data, file = "tract_data.csv")
 
 #for (income educ single owner english isat in tract_data) { mutate (tract = str(tracta))}
 ```
 
 Creating a simpler data frame:
 ```{r}
-tract_update <- data.frame(tract_data$TRACT,tract_data$tracta, tract_data$income, tract_data$single, tract_data$owner, tract_data$english, tract_data$isat, tract_data$factorsocioeconomictier)
+#numerised data:
+tract_data2 <- read.csv("/Users/pawonee/Desktop/PhD/Sem3/Urban/UrbanEcon/tract_data.csv",header=TRUE) %>% 
+  mutate (inc = Estimated.Median.Family.Income.Cumulative.Percentage) %>%
+  select(TRACT,tracta,inc, single, owner, english, isat, factorsocioeconomictier,educ)
+
+sapply(tract_data2, class)
+i <- c(2,3)
 
 #Checking impact of household being single parent on educational attainment score:
-m1 <-lm(educ~single, data = tract_data)
-#doesnt work because percentage sign
-attach(tract_data)
-plot(educ, single)
+m1 <-lm(educ~single, data = tract_data2)
+stargazer(m1, type = "text")
+```
+This an important observation: the children from households with single parents have a 59% lower educational attaintment score than children from households with both parents present.
+
+
+```{r}
+attach(tract_data2)
+plot(single, educ)
 abline(lm(educ~single))
 title("Regression of % of single parent households on education attainment score")
 ```
