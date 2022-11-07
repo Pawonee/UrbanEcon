@@ -21,5 +21,11 @@ The goal is to replicate tables from an exisiting Urban paper. The paper I will 
 # The Efficiency of Race-Neutral Alternatives to Race-Based Affirmative Action: Evidence from Chicago's Exam Schools
 By: Glenn Ellison & Parag A. Pathak
 
-
-I will start working with the cleanest data here.
+```{r}
+library(stargazer)
+library(plm)
+library(foreign)
+library(tidyverse)
+_kf_applicationid appid <- read.csv()
+```
+rawdata}applications/SEHS2011_Applications.csv
