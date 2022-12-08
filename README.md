@@ -15,6 +15,7 @@ install.packages(c("leaps","gelnet","doParallel","foreach","hdm"))
 I have attached here a snap of the first set of instructions for cleaning tracts data using stata. I will refer to it as I do so in R. The resulting work will be in a markdwn file.
 
 * CPS tract characteristics data
+* 
 insheet using "${rawdata}Summary of Census Socioeconomic Data 2012-2013.csv", clear
 destring *, replace ignore("%")
 ren estimatedmedianfamilyincomecumul income
