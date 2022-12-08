@@ -1,5 +1,6 @@
-# UrbanEcon
-The Efficiency of Race-Neutral Alternatives to Race-Based Affirmative Action: Evidence from Chicago's Exam Schools
+# Urban Econ Replication Project
+
+##The Efficiency of Race-Neutral Alternatives to Race-Based Affirmative Action: Evidence from Chicago's Exam Schools
 Replication attempt by - Pawonee Khadka
 
 The original paper is by Ellison and Pathak (2020). 
