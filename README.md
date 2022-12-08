@@ -1,7 +1,7 @@
 # Urban Econ Replication Project
 
 ## The Efficiency of Race-Neutral Alternatives to Race-Based Affirmative Action: Evidence from Chicago's Exam Schools
-Replication attempt by - Pawonee Khadka
+### Replication attempt by - Pawonee Khadka
 
 The original paper is by Ellison and Pathak (2020). 
 Refer to attached link for AER : https://www.openicpsr.org/openicpsr/project/120529/version/V1/view?path=/openicpsr/120529/fcr:versions/V1&type=project
