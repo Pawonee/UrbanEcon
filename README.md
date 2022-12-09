@@ -62,3 +62,4 @@ save `cps'
 
 
 I cleaned the above data in R and created a quick anaylsis.The authors have a lot of the raw data, so I am able to do these quick cleans in multiple stages, however, there is key missing data which restricted me from replication.
+From here on, I move to the second replication project.
